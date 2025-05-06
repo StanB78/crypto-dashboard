@@ -7,17 +7,16 @@ import MarketCapChart from "./MarketCapChart";
 const App = () => {
     const [coins, setCoins] = useState([]);
     const [toggledStates, setToggledStates] = useState({});
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         fetch('https://data-api.coindesk.com/asset/v1/top/list?page=1&page_size=100')
             .then(httpResponse => httpResponse.json())
             .then(jsonResponse => {
                 setCoins(jsonResponse.Data.LIST);
-                console.log(jsonResponse.Data.LIST);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, []);
-
 
     const handleToggle = (coinId) => {
         setToggledStates(prevState => {
@@ -25,24 +24,35 @@ const App = () => {
                 ...prevState,
                 [coinId]: !prevState[coinId]
             };
-            localStorage.setItem("favorites", JSON.stringify(newState)); // Svae to local storage
+            localStorage.setItem("favorites", JSON.stringify(newState));
             return newState;
         });
     };
 
-    if (!coins || !coins.length) {
-        return <div>Loading...</div>;
-    }
-
+    const filteredCoins = coins.filter(coin =>
+        coin.NAME.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (coin.SYMBOL && coin.SYMBOL.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
     return (
-        <div>
-            <h1 style={{color: '#ffffff', margin: '40px'}}>Cryptocurrency List</h1>
-            <Link to="/favorites">
-                <button className="addFavorites">Check favorites</button>
-            </Link>
-            <ul>
-                {coins.map(coin => (
+        <div className="coin-list-container">
+            <h1 className="page-title">Cryptocurrency List</h1>
+
+            <div className="top-bar">
+                <input
+                    type="text"
+                    placeholder="Search coins..."
+                    className="search-input"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Link to="/favorites">
+                    <button className="addFavorites">Check favorites</button>
+                </Link>
+            </div>
+
+            <ul className="coin-list">
+                {filteredCoins.map(coin => (
                     <li key={coin.ID} className="crypto-styling">
                         <span>{coin.NAME} (${parseFloat(coin.PRICE_USD).toFixed(2)})</span>
                         <FavToggle

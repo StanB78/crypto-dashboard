@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./index.css";
 
 const Favorites = () => {
     const [favorites, setFavorites] = useState({});
@@ -20,47 +21,23 @@ const Favorites = () => {
     }, []);
 
     if (coins.length === 0) {
-        return <p style={{ padding: "20px", textAlign: "center", fontSize: "1.1rem", color: "#888" }}>No favorites selected.</p>;
+        return <p className="no-favorites-text">No favorites selected.</p>;
     }
 
     return (
-        <div style={{
-            maxWidth: "700px",
-            margin: "50px auto",
-            padding: "30px",
-            borderRadius: "16px",
-            background: "#1e1e2f",
-            color: "#f5f5f5",
-            boxShadow: "0 8px 20px rgba(0,0,0,0.3)"
-        }}>
-            <h1 style={{ textAlign: "center", marginBottom: "30px", fontSize: "2rem" }}>Your Favorite Cryptos</h1>
-            <ul style={{ listStyle: "none", padding: 0 }}>
+        <div className="favorites-container">
+            <h1 className="favorites-title">Your Favorite Cryptos</h1>
+            <ul className="favorites-list">
                 {coins.map(coin => (
-                    <li key={coin.ID} style={{
-                        marginBottom: "15px",
-                        background: "#2e2e3f",
-                        padding: "12px 16px",
-                        borderRadius: "8px",
-                        transition: "transform 0.2s",
-                        cursor: "pointer"
-                    }}>
-                        <Link to={`/coin/${coin.ID}`} style={{
-                            textDecoration: 'none',
-                            color: '#61dafb',
-                            fontWeight: 'bold',
-                            display: 'block'
-                        }}>
+                    <li key={coin.ID} className="favorite-item">
+                        <Link to={`/coin/${coin.ID}`} className="favorite-link">
                             {coin.NAME} — ${parseFloat(coin.PRICE_USD).toFixed(2)}
                         </Link>
                     </li>
                 ))}
             </ul>
-            <div style={{ marginTop: "30px", textAlign: "center" }}>
-                <Link to="/" style={{
-                    textDecoration: 'none',
-                    color: '#ff4d4f',
-                    fontWeight: 'bold'
-                }}>← Back to Home</Link>
+            <div className="back-home-container">
+                <Link to="/" className="back-home-link">← Back to Home</Link>
             </div>
         </div>
     );

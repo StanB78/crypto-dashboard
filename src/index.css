@@ -12,3 +12,105 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.coin-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 16px;
+  background: #1e1e2f;
+  color: #f5f5f5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.coin-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.error-text {
+  color: red;
+  text-align: center;
+}
+
+.chart-container {
+  margin-top: 30px;
+}
+
+.nav-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.favorites-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 16px;
+  background: #1e1e2f;
+  color: #f5f5f5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.favorites-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.favorites-list {
+  list-style: none;
+  padding: 0;
+}
+
+.favorite-item {
+  margin-bottom: 15px;
+  background: #2e2e3f;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.favorite-item:hover {
+  transform: scale(1.02);
+}
+
+.favorite-link {
+  text-decoration: none;
+  color: #61dafb;
+  font-weight: bold;
+  display: block;
+}
+
+.back-home-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.back-home-link {
+  text-decoration: none;
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.no-favorites-text {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #888;
+}
+
+
